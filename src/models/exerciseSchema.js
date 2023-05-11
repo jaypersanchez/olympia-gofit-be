@@ -3,49 +3,51 @@ import mongoose from "mongoose";
 const exerciseSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   videoUrl: {
     type: String,
-    required: true
+    required: true,
   },
   category: {
     type: String,
     enum: ["pull", "push", "legs", "core", "kids"],
-    required: true
+    required: true,
   },
   description: {
     type: String,
-    required: true
+    required: true,
   },
-  muscleGroup: [{
-    type: String,
-    required: true
-  }],
+  muscleGroup: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
   level: {
     type: String,
-    required: true
+    required: true,
   },
   mets: {
     type: Number,
-    required: true
+    required: true,
   },
   equipment: {
     type: String,
-    required: false
+    required: false,
   },
-  startingWeight: [{
-    kg: {
-      type: Number,
-      required: true
+  startingWeight: [
+    {
+      kg: {
+        type: Number,
+        required: true,
+      },
+      lbs: {
+        type: Number,
+        required: true,
+      },
     },
-    lbs: {
-      type: Number,
-      required: true
-    }
-  }],
+  ],
 });
-
-
 
 export default mongoose.model("Exercise", exerciseSchema);

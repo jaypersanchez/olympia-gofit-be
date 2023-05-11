@@ -49,13 +49,11 @@ async function resetToken(req, res, next) {
       });
       const newAccessToken = await jwtAuth(req.user, "30m");
       const newRefreshToken = await jwtAuth(req.user, "1d");
-      res
-        .status(200)
-        .send({
-          message: "New tokens generated",
-          accessToken: newAccessToken,
-          refreshToken: newRefreshToken,
-        });
+      res.status(200).send({
+        message: "New tokens generated",
+        accessToken: newAccessToken,
+        refreshToken: newRefreshToken,
+      });
     }
   } catch (error) {
     console.log("fired");

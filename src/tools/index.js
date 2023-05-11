@@ -1,6 +1,5 @@
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv/config"
-
+import dotenv from "dotenv/config";
 
 // A tool function used in middleware to generate a JWT token
 // Uses a consistent piece of data to generate the token, user's ID is used for example in the token
@@ -22,5 +21,4 @@ const generateJWTToken = (payload, time) =>
         else resolve(token);
       }
     );
-});
-
+  });

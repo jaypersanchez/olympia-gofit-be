@@ -1,28 +1,29 @@
-
-import mongoose from 'mongoose';
-import userWorkoutWeek from './userWorkoutWeek.js';
+import mongoose from "mongoose";
+import userWorkoutWeek from "./userWorkoutWeek.js";
 const UserWorkoutPlanSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
+    ref: "User",
+    required: true,
   },
-    weeks: [{
+  weeks: [
+    {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'UserWorkoutWeek'
-    }],
-    startDate: {
-      type: Date,
-      required: false
+      ref: "UserWorkoutWeek",
     },
-    endDate: {
-      type: Date,
-      required: false
-    },
-    complete: {
-      type: Boolean,
-      default: false
-    },
+  ],
+  startDate: {
+    type: Date,
+    required: false,
+  },
+  endDate: {
+    type: Date,
+    required: false,
+  },
+  complete: {
+    type: Boolean,
+    default: false,
+  },
 });
 
-export default mongoose.model('UserWorkoutPlan', UserWorkoutPlanSchema);
+export default mongoose.model("UserWorkoutPlan", UserWorkoutPlanSchema);

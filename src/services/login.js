@@ -1,5 +1,5 @@
 import userModel from "../models/userSchema.js";
-import {jwtAuth} from "../tools/index.js";
+import { jwtAuth } from "../tools/index.js";
 
 /**
  * A function that logs in a user
@@ -10,23 +10,29 @@ import {jwtAuth} from "../tools/index.js";
  */
 async function loginUser(req, res, next) {
   try {
-    const user = await userModel.checkCredentials(req.body.email, req.body.password)
-    console.log("LOGIN:", user)
-        if (await user) {
-            const token = await jwtAuth(user, "30m")
-            const refreshToken = await jwtAuth(user, "1d") 
-            console.log("THE RFRSH: ", refreshToken)
-            res.status(200).send({loggedIn: true, user:user, 
-              accessToken: token,
-              refreshToken: refreshToken})
-
-        } else {
-            res.status(401).send({loggedIn: false, message: "Wrong credentials"})
-        }
+    const user = await userModel.checkCredentials(
+      req.body.email,
+      req.body.password
+    );
+    console.log("LOGIN:", user);
+    if (await user) {
+      const token = await jwtAuth(user, "30m");
+      const refreshToken = await jwtAuth(user, "1d");
+      console.log("THE RFRSH: ", refreshToken);
+      res
+        .status(200)
+        .send({
+          loggedIn: true,
+          user: user,
+          accessToken: token,
+          refreshToken: refreshToken,
+        });
+    } else {
+      res.status(401).send({ loggedIn: false, message: "Wrong credentials" });
+    }
   } catch (error) {
-    res.status(500).send(error)
-
+    res.status(500).send(error);
   }
 }
 
-export default loginUser
+export default loginUser;

@@ -1,4 +1,4 @@
-import {writeFile} from 'fs';
+import { writeFile } from "fs";
 
 function writeJSONToFile(obj, filename) {
   writeFile(filename, JSON.stringify(obj, null, 2), (err) => {
@@ -8,4 +8,4 @@ function writeJSONToFile(obj, filename) {
   });
 }
 
-export {writeJSONToFile}
+export { writeJSONToFile };

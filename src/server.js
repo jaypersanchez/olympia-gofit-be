@@ -17,22 +17,19 @@ const port = process.env.PORT || 3002;
 // });
 
 // connect to database
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/test");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017");
 
 mongoose.connection.on("connected", () => {
-    //checks if the connection is established
-  console.log("Mongo Connected!")
+  //checks if the connection is established
+  console.log("Mongo Connected!");
 
   app.listen(port, () => {
-    console.table(listEndpoints(app))
+    console.table(listEndpoints(app));
 
-    console.log(`Server running on port ${port}`)
-  })
-})
+    console.log(`Server running on port ${port}`);
+  });
+});
 
-mongoose.connection.on("error", err => {
-  console.log(err)
-}) 
-
-
-
+mongoose.connection.on("error", (err) => {
+  console.log(err);
+});

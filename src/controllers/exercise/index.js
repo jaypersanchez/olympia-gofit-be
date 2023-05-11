@@ -4,9 +4,12 @@ import userModel from "../../models/userSchema.js";
 import loginUser from "../../services/login.js";
 import { resetToken } from "../../services/resetTokens.js";
 import { searchExercise } from "../../services/exerciseSearch.js";
-import { createFullWorkoutPlan, createWeeklyWorkoutPlan } from "../../tools/workoutGenerator.js";
+import {
+  createFullWorkoutPlan,
+  createWeeklyWorkoutPlan,
+} from "../../tools/workoutGenerator.js";
 /**
- *  The user controller 
+ *  The user controller
  * @namespace exerciseController
  */
 
@@ -19,40 +22,47 @@ export const exerciseController = {
    * @param {Object} next The express next function
    */
 
- search: async (req, res, next) => {
-    const  searchString  = req.body.query;
-    console.log("The search string is", searchString)
+  search: async (req, res, next) => {
+    const searchString = req.body.query;
+    console.log("The search string is", searchString);
     try {
       const results = await searchExercise(searchString);
       return res.json({
         success: true,
-        data: results
+        data: results,
       });
     } catch (err) {
       return res.status(500).json({
         success: false,
-        error: 'Server error'
+        error: "Server error",
       });
     }
-},
-createPlan: async (req, res, next) => {
-  const user = req.user;
-  console.log("The user is", user)
-  try {
-    const workoutPlan = await createFullWorkoutPlan(user);
-    // temporary find user and populate workouts
-    const foundUser = await userModel.findById(user._id).populate({path: "workoutPlans", populate:{path: "weeks", populate: {path:"workouts.exercises.exercise"}} })
-    return res.json({
-      success: true,
-      data: foundUser
-    });
-  } catch (err) {
-    console.log(err)
-    return res.status(500).json({
-      success: false,
-      error: 'Server error'
-    });
-  }
-
-}
-}
+  },
+  createPlan: async (req, res, next) => {
+    const user = req.user;
+    console.log("The user is", user);
+    try {
+      const workoutPlan = await createFullWorkoutPlan(user);
+      // temporary find user and populate workouts
+      const foundUser = await userModel
+        .findById(user._id)
+        .populate({
+          path: "workoutPlans",
+          populate: {
+            path: "weeks",
+            populate: { path: "workouts.exercises.exercise" },
+          },
+        });
+      return res.json({
+        success: true,
+        data: foundUser,
+      });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({
+        success: false,
+        error: "Server error",
+      });
+    }
+  },
+};
