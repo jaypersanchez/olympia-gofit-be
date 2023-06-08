@@ -17,7 +17,7 @@ const port = process.env.PORT || 3002;
 // });
 
 // connect to database
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/test");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/gofit");
 
 mongoose.connection.on("connected", () => {
     //checks if the connection is established

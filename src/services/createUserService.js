@@ -17,13 +17,16 @@ async function createUserService(req, res) {
         const newUser = new userModel(req.body);
         const { _id } = await newUser.save();
         const user = await userModel.findById(_id)
-        const token = await jwtAuth(user, "30m")
+        //this is throwing up
+        /*const token = await jwtAuth(user, "30m")
         const refreshToken = await jwtAuth(user, "1d") 
-        console.log("signup tokens : ", token," | ", refreshToken)
-        res.status(201).send({user: user,
-          accessToken: token,
-          refreshToken: refreshToken});
-        return undefined
+        console.log("signup tokens : ", token," | ", refreshToken)*/
+        res.status(201).send({
+          user: user,
+          //accessToken: token,
+          //refreshToken: refreshToken
+        });
+        //return undefined
       }
 
       } catch (error) {
