@@ -13,12 +13,13 @@ async function loginUser(req, res, next) {
     const user = await userModel.checkCredentials(req.body.email, req.body.password)
     console.log("LOGIN:", user)
         if (await user) {
-            const token = await jwtAuth(user, "30m")
-            const refreshToken = await jwtAuth(user, "1d") 
-            console.log("THE RFRSH: ", refreshToken)
-            res.status(200).send({loggedIn: true, user:user, 
+            //const token = await jwtAuth(user, "30m")
+            //const refreshToken = await jwtAuth(user, "1d") 
+            //console.log("THE RFRSH: ", refreshToken)
+            res.status(200).send({loggedIn: true, user:user})
+            /*res.status(200).send({loggedIn: true, user:user, 
               accessToken: token,
-              refreshToken: refreshToken})
+              refreshToken: refreshToken})*/
 
         } else {
             res.status(401).send({loggedIn: false, message: "Wrong credentials"})
