@@ -5,17 +5,9 @@ const exerciseSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  videoUrl: {
-    type: String,
-    required: true
-  },
   category: {
     type: String,
     enum: ["pull", "push", "legs", "core", "kids"],
-    required: true
-  },
-  description: {
-    type: String,
     required: true
   },
   muscleGroup: [{
@@ -26,26 +18,25 @@ const exerciseSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  mets: {
-    type: Number,
-    required: true
-  },
   equipment: {
     type: String,
     required: false
+  },
+  mets: {
+    type: Number,
+    required: true
   },
   startingWeight: [{
     kg: {
       type: Number,
       required: true
     },
-    lbs: {
-      type: Number,
-      required: true
-    }
+  videoUrl: {
+    type: String,
+    required: true
+  },
+  
   }],
 });
-
-
 
 export default mongoose.model("Exercise", exerciseSchema);

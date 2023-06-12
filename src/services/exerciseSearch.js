@@ -1,5 +1,18 @@
 import mongoose from "mongoose";
 import exerciseModel from "../models/exerciseSchema.js";
+
+const getExercises = async () => {
+  console.log(`Get all exercises`)
+  //const results = await exerciseModel.find();
+  exerciseModel.find()
+  .then( results => {
+    console.log(`Services.Exercises`, results)
+    return results
+  })
+  
+  
+}
+
 const searchExercise = async (searchString) => {
     console.log("search initiated")
     // const results = await Exercise.find({
@@ -15,4 +28,4 @@ const searchExercise = async (searchString) => {
 }
 
 
-export {searchExercise}
+export {searchExercise, getExercises}

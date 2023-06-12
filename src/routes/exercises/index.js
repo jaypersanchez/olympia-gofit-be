@@ -6,7 +6,9 @@ import { exerciseController } from "../../controllers/exercise/index.js";
 const exerciseRoute = express.Router();
 
 exerciseRoute.post("/search", exerciseController.search)
-exerciseRoute.put("/plan", verifyTokenMiddle, exerciseController.createPlan)
+//exerciseRoute.put("/plan", verifyTokenMiddle, exerciseController.createPlan)
+exerciseRoute.put("/plan", exerciseController.createPlan)
+exerciseRoute.post("/exercises", exerciseController.getExercises)
 
 
 
