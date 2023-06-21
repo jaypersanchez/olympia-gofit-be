@@ -8,6 +8,7 @@ import {
   createFullWorkoutPlan,
   createWeeklyWorkoutPlan,
 } from "../../tools/workoutGenerator.js";
+
 /**
  *  The user controller
  * @namespace exerciseController
@@ -60,15 +61,12 @@ export const exerciseController = {
     const user = req.body;
     console.log("The user is", user);
     try {
-      // const workoutPlan = await createFullWorkoutPlan(user);
+      await createFullWorkoutPlan(user.users);
       // temporary find user and populate workouts
-      const foundUser = await userModel.findById(user._id).populate({
+      const foundUser = await userModel.findById(user.users._id).populate({
         path: "workoutPlans",
-        populate: {
-          path: "plans",
-          populate: { path: "workouts.exercises.exercise" },
-        },
       });
+
       return res.json({
         success: true,
         data: foundUser,

@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
   avatar: { type: String },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
-  age: { type: Date },
+  age: { type: String },
   gender: { type: String, enum: ["male", "female"] },
   height: { type: String },
   weight: { type: String },
