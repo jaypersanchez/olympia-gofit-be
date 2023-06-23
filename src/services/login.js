@@ -39,7 +39,13 @@ async function loginUser(req, res, next) {
         workouts.push(week);
       }
 
-      res.status(200).send({ loggedIn: true, user: { data, workouts } });
+      res.status(200).send({
+        loggedIn: true,
+        user: {
+          data,
+          workoutss: workouts.length > 1 ? workouts : { ...workouts[0]._doc },
+        },
+      });
       /*res.status(200).send({loggedIn: true, user:user, 
               accessToken: token,
               refreshToken: refreshToken})*/
