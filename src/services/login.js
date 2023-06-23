@@ -27,23 +27,25 @@ async function loginUser(req, res, next) {
 
       const workouts = [];
 
-      for (const plan of data.workoutPlans) {
-        const startDate = moment(plan.startDate);
-        const currentDate = moment();
+      if (data.workoutPlans.length > 0) {
+        for (const plan of data.workoutPlans) {
+          const startDate = moment(plan.startDate);
+          const currentDate = moment();
 
-        const duration = moment.duration(currentDate.diff(startDate));
-        const weeks = Math.floor(duration.asWeeks());
+          const duration = moment.duration(currentDate.diff(startDate));
+          const weeks = Math.floor(duration.asWeeks());
 
-        const weekId = plan.weeks[weeks].toString();
-        const week = await userWorkoutWeekSchema.findById(weekId);
-        workouts.push(week);
+          const weekId = plan.weeks[weeks].toString();
+          const week = await userWorkoutWeekSchema.findById(weekId);
+          workouts.push(week);
+        }
       }
 
       res.status(200).send({
         loggedIn: true,
         user: {
           data,
-          workoutss: workouts.length > 1 ? workouts : { ...workouts[0]._doc },
+          workouts: workouts.length != 1 ? workouts : { ...workouts[0]._doc },
         },
       });
       /*res.status(200).send({loggedIn: true, user:user, 
