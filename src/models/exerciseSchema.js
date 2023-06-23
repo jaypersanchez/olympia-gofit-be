@@ -30,16 +30,20 @@ const exerciseSchema = new mongoose.Schema({
   },
   startingWeight: [
     {
+      lbs: {
+        type: Number,
+        required: true,
+      },
       kg: {
         type: Number,
         required: true,
       },
-      videoUrl: {
-        type: String,
-        required: true,
-      },
     },
   ],
+  videoUrl: {
+    type: String,
+    required: true,
+  },
 });
 
 export default mongoose.model("exercises", exerciseSchema);
