@@ -54,6 +54,10 @@ const userWorkoutWeekSchema = new mongoose.Schema({
             type: Number,
             required: true,
           },
+          videoUrl: {
+            type: String,
+            required: true,
+          },
           complete: {
             type: Boolean,
             required: true,

@@ -104,6 +104,7 @@ function formatWeeklyWorkoutData(workouts, user) {
         reps: 10,
         sets: 4,
         setsCompleted: 0,
+        videoUrl: exercise.videoUrl,
         weight: exercise.startingWeight,
         complete: false,
       });
