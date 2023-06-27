@@ -106,6 +106,7 @@ function formatWeeklyWorkoutData(workouts, user) {
         setsCompleted: 0,
         videoUrl: exercise.videoUrl,
         weight: exercise.startingWeight,
+        name: exercise.name,
         complete: false,
       });
     });

@@ -38,6 +38,10 @@ const userWorkoutWeekSchema = new mongoose.Schema({
             ref: "exercises",
             required: true,
           },
+          name: {
+            type: String,
+            required: true,
+          },
           weight: {
             type: Array,
             required: true,
