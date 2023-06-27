@@ -45,7 +45,8 @@ async function loginUser(req, res, next) {
         loggedIn: true,
         user: {
           data,
-          workouts: workouts.length != 1 ? workouts : { ...workouts[0]._doc },
+          workoutPlans:
+            workouts.length != 1 ? workouts : { ...workouts[0]._doc },
         },
       });
       /*res.status(200).send({loggedIn: true, user:user, 
